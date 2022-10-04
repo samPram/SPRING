@@ -12,6 +12,8 @@ const ENV = process.env.NODE_ENV;
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
       validationSchema: Joi.object({
         PORT: Joi.number().default(4000),
+        SECRET_TOKEN: Joi.string().required(),
+        EXPIRED_TOKEN: Joi.string().required(),
       }),
       load: [configuration],
       cache: true,
