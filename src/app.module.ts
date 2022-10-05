@@ -8,9 +8,19 @@ import { UserModule } from './models/user/user.module';
 import { UnitModule } from './models/unit/unit.module';
 import { DeviceModule } from './models/device/device.module';
 import { MonitoringModule } from './models/monitoring/monitoring.module';
+import { RedisProviderModule } from './providers/cache/redis/provider.module';
 
 @Module({
-  imports: [AuthModule, AppConfigModule, PostgresProviderModule, UserModule, UnitModule, DeviceModule, MonitoringModule],
+  imports: [
+    AuthModule,
+    AppConfigModule,
+    PostgresProviderModule,
+    RedisProviderModule,
+    UserModule,
+    UnitModule,
+    DeviceModule,
+    MonitoringModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

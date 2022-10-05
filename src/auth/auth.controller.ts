@@ -16,4 +16,7 @@ export class AuthController {
 
     return { data: user, access_token: token };
   }
+
+  @Post('logout')
+  async postLogut() {}
 }
