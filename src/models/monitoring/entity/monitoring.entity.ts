@@ -10,7 +10,6 @@ import {
 export enum Status {
   WARNING = 'warning',
   DANGER = 'danger',
-  SUCCESS = 'success',
 }
 
 @Entity('monitoring')
@@ -21,10 +20,10 @@ export class MonitoringEntity {
   @Column('integer', { nullable: false, default: 0 })
   value: number;
 
-  @Column('timestamp')
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   datetime: Date;
 
-  @Column({ type: 'enum', enum: Status, default: Status.SUCCESS })
+  @Column({ type: 'enum', enum: Status })
   status: Status;
 
   //   Relations

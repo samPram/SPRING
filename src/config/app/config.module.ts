@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
 import * as Joi from 'joi';
 import { AppConfigService } from './config.service';
 import configuration from './configuration';
@@ -18,6 +19,7 @@ const ENV = process.env.NODE_ENV;
       load: [configuration],
       cache: true,
     }),
+    ScheduleModule.forRoot(),
   ],
   providers: [ConfigService, AppConfigService],
   exports: [ConfigService, AppConfigService],
