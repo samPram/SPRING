@@ -16,46 +16,46 @@ export class MonitoringService {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
-  async insertDataLikeSensor() {
-    console.log('inserting');
+  //   @Cron(CronExpression.EVERY_10_SECONDS)
+  //   async insertDataLikeSensor() {
+  //     console.log('inserting');
 
-    try {
-      const payload: RandomPayload[] = [];
+  //     try {
+  //       const payload: RandomPayload[] = [];
 
-      for (let index = 0; index < 12; index++) {
-        const random_value = this.randomIntFromInterval(0, 200);
+  //       for (let index = 0; index < 12; index++) {
+  //         const random_value = this.randomIntFromInterval(0, 200);
 
-        let id_device;
+  //         let id_device;
 
-        if (index + 1 >= 10) {
-          id_device = `SW-${index + 1}`;
-        } else {
-          id_device = `SW-0${index + 1}`;
-        }
+  //         if (index + 1 >= 10) {
+  //           id_device = `SW-${index + 1}`;
+  //         } else {
+  //           id_device = `SW-0${index + 1}`;
+  //         }
 
-        payload.push({
-          value: random_value,
-          status: this.checkStatus(random_value),
-          device: { id_device: id_device },
-        });
+  //         payload.push({
+  //           value: random_value,
+  //           status: this.checkStatus(random_value),
+  //           device: { id_device: id_device },
+  //         });
 
-        console.log(payload[index]);
-      }
+  //         console.log(payload[index]);
+  //       }
 
-      await this.monitoringRepository
-        .createQueryBuilder()
-        .insert()
-        .values([...payload])
-        .execute();
-    } catch (error) {
-      console.log(error);
-      throw new HttpException(
-        'Internal server error!',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
+  //       await this.monitoringRepository
+  //         .createQueryBuilder()
+  //         .insert()
+  //         .values([...payload])
+  //         .execute();
+  //     } catch (error) {
+  //       console.log(error);
+  //       throw new HttpException(
+  //         'Internal server error!',
+  //         HttpStatus.INTERNAL_SERVER_ERROR,
+  //       );
+  //     }
+  //   }
 
   checkStatus(value: number): Status {
     if (value >= 80 && value <= 100) {

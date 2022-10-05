@@ -8,6 +8,7 @@ import {
   OneToMany,
   PrimaryColumn,
 } from 'typeorm';
+import { Transform } from 'class-transformer';
 
 @Entity('device')
 export class DeviceEntity {

@@ -6,6 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Transform } from 'class-transformer';
+import * as moment from 'moment';
 
 export enum Status {
   WARNING = 'warning',
@@ -20,10 +22,13 @@ export class MonitoringEntity {
   @Column('integer', { nullable: false, default: 0 })
   value: number;
 
+  @Transform(({ value }) =>
+    moment(value.datetime).format('DD/MM/YYYY hh:mm:ss'),
+  )
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   datetime: Date;
 
-  @Column({ type: 'enum', enum: Status })
+  @Column({ type: 'enum', enum: Status, nullable: true })
   status: Status;
 
   //   Relations
