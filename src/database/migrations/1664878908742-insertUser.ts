@@ -8,6 +8,6 @@ export class insertUser1664878908742 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DELETE * FROM user`);
+    await queryRunner.query(`DELETE * FROM public.user`);
   }
 }

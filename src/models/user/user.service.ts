@@ -23,4 +23,28 @@ export class UserService {
       throw new HttpException(error.message, error.getStatus());
     }
   }
+
+  async getById(id: number) {
+    try {
+      const user = await this.userRepository.findOne({
+        where: {
+          id_user: id,
+        },
+      });
+
+      if (!user) {
+        throw new HttpException('Data not found!', HttpStatus.NOT_FOUND);
+      }
+
+      delete user?.password;
+
+      return user;
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(
+        'Internal server error!',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }
