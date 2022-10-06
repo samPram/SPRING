@@ -13,8 +13,13 @@ export default registerAs('postgres', () => ({
   entities: [__dirname + '/../../../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/../../../database/migrations/*{.ts,.js}'],
   migrationsTableName: 'migration_table',
-  synchronize: true,
+  synchronize: false, //false on production
   logging: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
   cli: {
     migrationsDir: 'src/database/migrations', // This path will be used by typeorm cli when we create a new migration
   },
