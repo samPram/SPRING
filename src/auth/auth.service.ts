@@ -4,7 +4,6 @@ import * as bcrypt from 'bcrypt';
 import { PayloadToken } from './interfaces/token-payload.interfaces';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { RedisProviderService } from 'src/providers/cache/redis/provider.service';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +11,6 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-    private readonly redisService: RedisProviderService,
   ) {}
 
   async authLogin(username: string, password: string) {
@@ -52,17 +50,17 @@ export class AuthService {
 
   async logout(key: number, payload: string) {
     try {
-      const user = await this.redisService.getCache(key);
+      // const user = await this.redisService.getCache(key);
 
-      if (!user) {
-        console.info(user);
-      }
+      // if (!user) {
+      //   console.info(user);
+      // }
 
-      const black_list = {
-        [key]: [payload],
-      };
+      // const black_list = {
+      //   [key]: [payload],
+      // };
 
-      await this.redisService.setCacheData(key, black_list, 3600);
+      // await this.redisService.setCacheData(key, black_list, 3600);
 
       return {
         message: 'Successfuly logout!',

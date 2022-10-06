@@ -8,14 +8,14 @@ import { UserModule } from './models/user/user.module';
 import { UnitModule } from './models/unit/unit.module';
 import { DeviceModule } from './models/device/device.module';
 import { MonitoringModule } from './models/monitoring/monitoring.module';
-import { RedisProviderModule } from './providers/cache/redis/provider.module';
+import { WebSocketProviderModule } from './providers/websocket/provider.module';
 
 @Module({
   imports: [
     AuthModule,
     AppConfigModule,
     PostgresProviderModule,
-    RedisProviderModule,
+    WebSocketProviderModule,
     UserModule,
     UnitModule,
     DeviceModule,
